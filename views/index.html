@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+  <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+  <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+  <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+  <!-- BEGIN HEAD -->
+  <head>
+    <meta charset="utf-8" />
+    <title> Arduino Node Ping </title>     
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- STYLESHEETS BEGIN -->
+    <link rel="shortcut icon" href="/img/favicon.png"><!-- TO ZIP -->
+
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,100' rel='stylesheet' type='text/css'>
+    <!-- STYLESHEETS END --> 
+  </head>
+  <!-- END HEAD -->
+  <body>
+    <div data-role="page">
+
+    <div data-role="header" data-position="fixed">
+        <h1>Arduino testing</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+      <form>
+        <input type="button" id="get_status" value="Status">
+      </form>
+      <div id="result" style="text-align:center;font-size:52px; "></div>
+
+    </div><!-- /content -->
+
+    <div data-role="footer" data-position="fixed">
+        <h4>Stamplay Research & Destroy</h4>
+    </div><!-- /footer -->
+    </div><!-- /page -->
+    <script type="text/javascript">
+      $('#get_status').on('click',function(e) {
+        $.ajax({
+          url: 'http://10.0.1.44:4000/status',
+          // url: 'http://localhost:4000/status',
+
+          type: 'GET',
+          success:function(res) {
+            $('#result').html('<i style="color:green" class="fa fa-check"></i>');
+          },
+          error: function(err){
+            $('#result').html('<i style="color:red" class="fa fa-ambulance"></i>'); 
+          }
+        })
+      })
+    </script>
+    
+  </body>
+</html>
